@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using Azure.Identity;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -74,18 +75,21 @@ namespace CosmosGlobalDistDemosCore
                     {
                         region = region,
                         client = new CosmosClient(lww.endpoint, lww.key, new CosmosClientOptions { ApplicationRegion = region })
+                        //client = new CosmosClient(lww.endpoint, new DefaultAzureCredential(), new CosmosClientOptions { ApplicationRegion = region })
                     });
 
                     custom.replicaRegions.Add(new ReplicaRegion
                     {
                         region = region,
                         client = new CosmosClient(custom.endpoint, custom.key, new CosmosClientOptions { ApplicationRegion = region })
+                        //client = new CosmosClient(custom.endpoint, new DefaultAzureCredential(), new CosmosClientOptions { ApplicationRegion = region })
                     });
 
                     none.replicaRegions.Add(new ReplicaRegion
                     {
                         region = region,
-                        client = new CosmosClient(none.endpoint, none.key, new CosmosClientOptions { ApplicationRegion = region })
+                        client = new CosmosClient(custom.endpoint, custom.key, new CosmosClientOptions { ApplicationRegion = region })
+                        //client = new CosmosClient(custom.endpoint, new DefaultAzureCredential(), new CosmosClientOptions { ApplicationRegion = region })
                     });
                 }
             }

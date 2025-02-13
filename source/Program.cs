@@ -32,6 +32,7 @@ namespace CosmosGlobalDistDemosCore
             
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddJsonFile("appSettings.json")
+                .AddJsonFile("appSettings.local.json", optional: true)
                 .Build();
 
             singleMultiRegion = new SingleMultiRegion(configuration);

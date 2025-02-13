@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using Azure.Identity;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -118,6 +119,7 @@ namespace CosmosGlobalDistDemosCore
                 foreach (Benchmark benchmark in benchmarks)
                 {
                     benchmark.client = new CosmosClient(benchmark.endpoint, benchmark.key, new CosmosClientOptions { ApplicationRegion = benchmark.targetRegion });
+                    //benchmark.client = new CosmosClient(benchmark.endpoint, new DefaultAzureCredential(), new CosmosClientOptions { ApplicationRegion = benchmark.targetRegion });
                 }
             }
             catch (Exception e)
